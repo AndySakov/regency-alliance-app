@@ -12,7 +12,12 @@
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
-    "react-native": "0.70.5"
+    "react-native": "0.70.5",
+    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-progress": "^5.0.0",
+    "react-native-pure-button": "^2.0.9",
+    "react-native-svg": "^13.8.0",
+    "react-native-webview": "^11.23.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
