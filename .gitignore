@@ -12,3 +12,21 @@ web-build/
 
 # macOS
 .DS_Store
+
+/android/build/
+
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/app/build
+/android/app/src/release
+/android/app/src/debug
+
+/ios/build/
+/ios/RegencyAllianceTests
+/ios/.xcode.env.local
+/ios/.xcode.env
+
+Pods/
+/android/.gradle/
+/android/gradle/

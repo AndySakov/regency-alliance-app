@@ -9,11 +9,43 @@ import {
 } from "react-native";
 import WebView from "react-native-webview";
 import { Bar } from "react-native-progress";
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 import React, { useEffect, useState, useRef } from "react";
 import Button from "react-native-pure-button";
 import homeIcon from "./assets/icons/home.png";
 import reloadIcon from "./assets/icons/reload.png";
+import { Keyboard } from "react-native";
+
+const useKeyboard = () => {
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    function onKeyboardDidShow(e) {
+      setKeyboardVisible(true);
+      setKeyboardHeight(e.endCoordinates.height);
+    }
+
+    function onKeyboardDidHide() {
+      setKeyboardVisible(false);
+      setKeyboardHeight(0);
+    }
+
+    const showSubscription = Keyboard.addListener(
+      "keyboardDidShow",
+      onKeyboardDidShow
+    );
+    const hideSubscription = Keyboard.addListener(
+      "keyboardDidHide",
+      onKeyboardDidHide
+    );
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
+  return { keyboardHeight, keyboardVisible };
+};
 
 export default function App() {
   const { height, width } = useWindowDimensions();
@@ -21,6 +53,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [urlChanged, setUrlChanged] = useState(false);
+  const { keyboardHeight, keyboardVisible } = useKeyboard();
 
   const webViewRef = useRef(null);
 
@@ -88,7 +121,7 @@ export default function App() {
           setUrlChanged(webViewState.url !== defaultURL);
         }}
         style={{
-          height: height,
+          height: keyboardVisible ? height - keyboardHeight : height,
           width: width,
           position: "absolute",
           backgroundColor: "#f6f9f9",
@@ -111,7 +144,6 @@ export default function App() {
         useWebView2
         nestedScrollEnabled
       />
-      <KeyboardSpacer/>
       <View style={styles.bottomView}>
         <View style={styles.col6}>
           <Button
