@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RegencyAlliance",
-    "displayName": "RegencyAlliance",
+    "name": "Regency Alliance",
+    "displayName": "Regency Alliance",
     "slug": "RegencyAlliance",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,9 +10,11 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ec228d"
+      "backgroundColor": "#d83b8a"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.regencyalliance.RegencyAlliance"
@@ -26,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "956b3f14-3a97-44ae-901f-052e983b5d81"
+      }
     }
   }
 }
